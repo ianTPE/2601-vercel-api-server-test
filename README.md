@@ -66,6 +66,33 @@ curl -X POST http://localhost:3000/api/test \
 {"received":{"name":"Bun User"},"timestamp":1704355200000}
 ```
 
+### Python API 支援
+
+本專案同時支援 Python Serverless Function。
+
+測試 Python endpoint：
+
+```bash
+curl http://localhost:3000/api/python
+```
+
+預期回應：
+```json
+{
+  "message": "Hello from Vercel Python API!",
+  "python": "3.9.x",
+  "platform": "linux"
+}
+```
+
+本專案使用 [uv](https://github.com/astral-sh/uv) 進行 Python 依賴管理 (`pyproject.toml` 與 `uv.lock`)。
+Vercel 現在已經原生支援 `uv`，部署時會自動讀取 `uv.lock` 並安裝依賴，無需手動產生 `requirements.txt`。
+
+若你需要加入新的 Python 套件，請使用：
+```bash
+uv add <package_name>
+```
+
 ## 部署 (Deployment)
 
 ### 使用 Vercel CLI 部署
