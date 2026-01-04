@@ -1,5 +1,9 @@
 export async function GET() {
-  return Response.json({ message: 'Hello from Vercel Bun API!' });
+  return Response.json({
+    message: 'Hello from Vercel Bun API!',
+    bun: process.versions.bun ?? null,
+    node: process.versions.node ?? null,
+  });
 }
 
 export async function POST(request: Request) {

@@ -45,7 +45,11 @@ curl http://localhost:3000/api/test
 
 預期回應：
 ```json
-{"message":"Hello from Vercel Bun API!"}
+{
+  "message": "Hello from Vercel Bun API!",
+  "bun": "1.x.x",
+  "node": "20.x.x"
+}
 ```
 
 ### POST 請求
