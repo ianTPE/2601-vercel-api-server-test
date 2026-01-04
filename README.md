@@ -40,7 +40,7 @@ bunx vercel dev
 測試簡單的回應：
 
 ```bash
-curl http://localhost:3000/api/test
+curl http://localhost:3000/api/typescript
 ```
 
 預期回應：
@@ -56,7 +56,7 @@ curl http://localhost:3000/api/test
 測試帶有 JSON body 的請求：
 
 ```bash
-curl -X POST http://localhost:3000/api/test \
+curl -X POST http://localhost:3000/api/typescript \
   -H "Content-Type: application/json" \
   -d '{"name": "Bun User"}'
 ```
@@ -98,14 +98,14 @@ Windows 預設的 PowerShell 對於單引號 `'` 的處理方式與 Linux 不同
 
 **WSL / macOS / Linux 範例 (推薦):**
 ```bash
-curl -X POST https://your-app.vercel.app/api/test \
+curl -X POST https://your-app.vercel.app/api/typescript \
   -H "Content-Type: application/json" \
   -d '{"name": "Bun User"}'
 ```
 
 **Windows PowerShell 範例:**
 ```powershell
-curl -X POST https://your-app.vercel.app/api/test `
+curl -X POST https://your-app.vercel.app/api/typescript `
   -H "Content-Type: application/json" `
   -d '{"name": "Bun User"}'
 ```
@@ -119,7 +119,7 @@ curl -X POST https://your-app.vercel.app/api/test `
 
 2.  **設定方法與 URL**
     *   方法 (Method): 選擇 **POST**。
-    *   URL: 輸入你的 API 網址，例如 `https://2601-vercel-api-server-test.vercel.app/api/test` (或本地的 `http://localhost:3000/api/test`)。
+    *   URL: 輸入你的 API 網址，例如 `https://2601-vercel-api-server-test.vercel.app/api/typescript` (或本地的 `http://localhost:3000/api/typescript`)。
 
 3.  **設定 Headers**
     *   切換到 **Headers** 分頁。
@@ -165,4 +165,4 @@ bunx vercel deploy --prod
 ## 設定說明
 
 - **`vercel.json`**: 指定使用 `bunVersion: 1.x` 來啟用 Bun runtime。
-- **`api/`**: 存放 API 路由檔案，例如 `api/test.ts` 對應 `/api/test`。
+- **`api/`**: 存放 API 路由檔案，例如 `api/typescript.ts` 對應 `/api/typescript`。
