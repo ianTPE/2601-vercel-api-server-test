@@ -1,5 +1,5 @@
 from http.server import BaseHTTPRequestHandler
-import orjson
+import json
 import sys
 
 class handler(BaseHTTPRequestHandler):
@@ -12,9 +12,8 @@ class handler(BaseHTTPRequestHandler):
             'message': 'Hello from Vercel Python API!',
             'python': sys.version,
             'platform': sys.platform,
-            'serializer': 'orjson'
+            'serializer': 'json'
         }
         
-        # orjson.dumps returns bytes, so no need to encode('utf-8')
-        self.wfile.write(orjson.dumps(data))
+        self.wfile.write(json.dumps(data).encode('utf-8'))
         return
