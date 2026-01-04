@@ -7,6 +7,13 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const body = await request.json();
-  return Response.json({ received: body, timestamp: Date.now() });
+  try {
+    const body = await request.json();
+    return Response.json({ received: body, timestamp: Date.now() });
+  } catch (error) {
+    return Response.json(
+      { error: 'Invalid JSON body', details: error instanceof Error ? error.message : String(error) },
+      { status: 400 }
+    );
+  }
 }

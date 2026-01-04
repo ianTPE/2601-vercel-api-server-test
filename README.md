@@ -80,20 +80,66 @@ curl http://localhost:3000/api/python
 ```json
 {
   "message": "Hello from Vercel Python API!",
-  "python": "3.9.x",
-  "platform": "linux"
+  "python": "3.12.x",
+  "platform": "linux",
+  "serializer": "json"
 }
 ```
 
-本專案使用 [uv](https://github.com/astral-sh/uv) 進行 Python 依賴管理 (`pyproject.toml` 與 `uv.lock`)。
-Vercel 現在已經原生支援 `uv`，部署時會自動讀取 `uv.lock` 並安裝依賴，無需手動產生 `requirements.txt`。
+目前 Python 實作使用標準 `json` 函式庫以確保在 Serverless 環境下的最高相容性與穩定性。
 
-若你需要加入新的 Python 套件，請使用：
+## API 測試指南
+
+### 使用 CLI (curl)
+
+**注意：** 如果你在 Windows 上開發，強烈建議使用 **WSL (Windows Subsystem for Linux)** 或 **Git Bash** 來執行 `curl` 指令。
+
+Windows 預設的 PowerShell 對於單引號 `'` 的處理方式與 Linux 不同，容易導致 JSON 格式錯誤。
+
+**WSL / macOS / Linux 範例 (推薦):**
 ```bash
-uv add <package_name>
+curl -X POST https://your-app.vercel.app/api/test \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Bun User"}'
 ```
 
-## 部署 (Deployment)
+**Windows PowerShell 範例:**
+```powershell
+curl -X POST https://your-app.vercel.app/api/test `
+  -H "Content-Type: application/json" `
+  -d '{"name": "Bun User"}'
+```
+
+### 使用 Postman
+
+如果你不習慣使用命令行，Postman 是一個很好的圖形化測試工具。
+
+1.  **建立新的請求 (Create Request)**
+    *   點擊 `+` 按鈕或 "New" -> "HTTP Request"。
+
+2.  **設定方法與 URL**
+    *   方法 (Method): 選擇 **POST**。
+    *   URL: 輸入你的 API 網址，例如 `https://2601-vercel-api-server-test.vercel.app/api/test` (或本地的 `http://localhost:3000/api/test`)。
+
+3.  **設定 Headers**
+    *   切換到 **Headers** 分頁。
+    *   Key: `Content-Type`
+    *   Value: `application/json`
+
+4.  **設定 Body**
+    *   切換到 **Body** 分頁。
+    *   選擇 **raw**。
+    *   右側格式選單從 Text 改為 **JSON**。
+    *   在編輯區輸入 JSON 資料：
+        ```json
+        {
+          "name": "Postman User"
+        }
+        ```
+
+5.  **發送請求**
+    *   點擊藍色的 **Send** 按鈕。
+    *   下方視窗應該會顯示回應內容 (Status: 200 OK)。
 
 ### 使用 Vercel CLI 部署
 
