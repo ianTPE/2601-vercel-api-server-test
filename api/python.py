@@ -1,7 +1,8 @@
 from http.server import BaseHTTPRequestHandler
 import json
 import sys
-import time
+import sys
+from datetime import datetime, timezone, timedelta
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -27,7 +28,7 @@ class handler(BaseHTTPRequestHandler):
             
             response = {
                 'received': body,
-                'timestamp': int(time.time() * 1000) 
+                'timestamp': datetime.now(timezone(timedelta(hours=8))).isoformat(timespec='seconds') 
             }
             
             self.send_response(200)
